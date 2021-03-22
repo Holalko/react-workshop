@@ -4,6 +4,7 @@ import ExampleContainer from "../ExampleContainer";
 import Container from "../../components/Container";
 import PostForm from "./components/PostForm";
 import {PostType} from "../../models/PostType";
+import {usePost} from "../../hooks/queries/usePost";
 
 
 const PostContainer: FC = ({}) => {
@@ -12,6 +13,7 @@ const PostContainer: FC = ({}) => {
 
     // TODO: TASK #1
     //  create hook to fetch post by ID with react-query useQuery hook
+    const {data: post, isFetching} = usePost(id);
 
 
     // TODO: TASK #2
@@ -35,7 +37,9 @@ const PostContainer: FC = ({}) => {
     return <>
         <Container>
             <h4>Post id is {id}</h4>
-
+            <span>
+                {post ? JSON.stringify(post) : null}
+            </span>
             {/* TODO: uncomment when fetching post done */}
             {/*<PostForm post={} onSubmit={} />*/}
         </Container>
