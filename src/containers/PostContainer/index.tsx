@@ -1,16 +1,19 @@
 import React, {FC} from "react";
-import {useParams} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import ExampleContainer from "../ExampleContainer";
 import Container from "../../components/Container";
 import PostForm from "./components/PostForm";
 import {PostType} from "../../models/PostType";
 import {usePost} from "../../hooks/queries/usePost";
 import {useCreatePostMutation} from "../../hooks/mutations/useUpdatePostMutation";
+import {useDeletePostMutation} from "../../hooks/mutations/useDeletePostMutation";
 
 
 const PostContainer: FC = ({}) => {
     const {id} = useParams<{ id: string }>();
     const {mutate: updatePost} = useCreatePostMutation();
+    const push = useHistory().push;
+    const {mutate: deletePost} = useDeletePostMutation(() => push("/"));
 
 
     // TODO: TASK #1
@@ -36,10 +39,15 @@ const PostContainer: FC = ({}) => {
     // TODO: TASK #5
     //  add option to delete task, again use react-query useMutation hook and don't forget to invalidate
 
+    const handleDelete = () => {
+        deletePost(id);
+    }
+
     return <>
         <Container>
             <h4>Post id is {id}</h4>
             {/* TODO: uncomment when fetching post done */}
+            <button onClick={handleDelete}>Delete post</button>
             {post ? <PostForm post={post} onSubmit={handleSubmit} /> : null}
         </Container>
         <ExampleContainer/>

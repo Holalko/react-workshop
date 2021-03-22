@@ -6,7 +6,10 @@ export const request = async (url: string, options: RequestInit = {}) => {
     })
 
     const text = await response.text();
-    return JSON.parse(text);
+    if(text){
+        return JSON.parse(text);
+    }
+    return null;
 }
 
 
