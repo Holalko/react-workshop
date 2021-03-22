@@ -7,6 +7,7 @@ import PostContainer from "./containers/PostContainer";
 import Layout from "./components/Layout";
 
 import "./styles.css";
+import {DarkModeProvider} from "./contexts/DarkModeContext";
 
 export const queryClient = new QueryClient({
     defaultOptions: {
@@ -24,6 +25,7 @@ export const queryClient = new QueryClient({
 ReactDOM.render(
     <React.StrictMode>
         <QueryClientProvider client={queryClient}>
+            <DarkModeProvider>
             <Router>
                <Layout>
                    <Switch>
@@ -36,6 +38,7 @@ ReactDOM.render(
                    </Switch>
                </Layout>
             </Router>
+            </DarkModeProvider>
         </QueryClientProvider>
     </React.StrictMode>,
     document.getElementById('root')

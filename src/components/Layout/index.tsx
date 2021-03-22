@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import {NavLink} from "react-router-dom";
+import {useDarkMode} from "../../contexts/DarkModeContext";
 
 interface LayoutProps {
 
@@ -8,13 +9,14 @@ interface LayoutProps {
 const Layout: FC<LayoutProps> = ({children}) => {
     // TODO: TASK #6
     //     create context for dark mode
+    const {isDarkMode, toggleDarkMode} = useDarkMode();
 
 
     return <>
         <nav style={{
             display: 'flex',
             alignItems: 'center',
-            flexFlow:"row",
+            flexFlow: "row",
             background: '#585858',
             color: "white",
             padding: '0.5em 1em'
@@ -32,15 +34,14 @@ const Layout: FC<LayoutProps> = ({children}) => {
             </ul>
 
 
-
             <div style={{
                 marginLeft: 'auto',
                 display: 'flex',
-                alignItems:'center'
+                alignItems: 'center'
             }}>
                 Dark mode
                 <label className="switch">
-                    <input type="checkbox"/>
+                    <input type="checkbox" checked={isDarkMode} onChange={evt => toggleDarkMode()}/>
                     <span className="slider round"></span>
                 </label>
             </div>

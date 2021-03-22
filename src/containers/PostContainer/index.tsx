@@ -7,10 +7,12 @@ import {PostType} from "../../models/PostType";
 import {usePost} from "../../hooks/queries/usePost";
 import {useCreatePostMutation} from "../../hooks/mutations/useUpdatePostMutation";
 import {useDeletePostMutation} from "../../hooks/mutations/useDeletePostMutation";
+import {useDarkMode} from "../../contexts/DarkModeContext";
 
 
 const PostContainer: FC = ({}) => {
     const {id} = useParams<{ id: string }>();
+    const {isDarkMode} = useDarkMode();
     const {mutate: updatePost} = useCreatePostMutation();
     const push = useHistory().push;
     const {mutate: deletePost} = useDeletePostMutation(() => push("/"));
@@ -45,6 +47,7 @@ const PostContainer: FC = ({}) => {
 
     return <>
         <Container>
+            <h5>Dark mode is {isDarkMode ? "on" : "off"}</h5>
             <h4>Post id is {id}</h4>
             {/* TODO: uncomment when fetching post done */}
             <button onClick={handleDelete}>Delete post</button>
