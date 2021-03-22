@@ -7,7 +7,7 @@ interface TextFieldProps {
 
 const TextField = ({name}: TextFieldProps) => {
     const [field] = useField({name});
-    return <input {...field} className={"w-100"}/>
+    return <textarea {...field} className={"w-100"} />
 }
 
 export default TextField;

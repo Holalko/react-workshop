@@ -24,7 +24,7 @@ const PostContainer: FC = ({}) => {
     // TODO: TASK #3
     //  implement post update with react-query useMutation hook
     const handleSubmit = (post: PostType) => {
-
+        console.log(post);
     }
 
     // TODO: TASK #4
@@ -37,11 +37,8 @@ const PostContainer: FC = ({}) => {
     return <>
         <Container>
             <h4>Post id is {id}</h4>
-            <span>
-                {post ? JSON.stringify(post) : null}
-            </span>
             {/* TODO: uncomment when fetching post done */}
-            {/*<PostForm post={} onSubmit={} />*/}
+            {post ? <PostForm post={post} onSubmit={handleSubmit} /> : null}
         </Container>
         <ExampleContainer/>
     </>

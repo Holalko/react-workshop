@@ -9,7 +9,9 @@ a {
     color: inherit;
 }
 
-
+.w-100{
+    width: 100% !important;
+}
 
 /* The switch - the box around the slider */
 .switch {
