@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ExampleContainer from "./containers/ExampleContainer";
 import {QueryClientProvider, QueryClient} from "react-query";
-import {BrowserRouter as Router, Route} from "react-router-dom"
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import PostContainer from "./containers/PostContainer";
+import Layout from "./components/Layout";
+
+import "./styles.css";
 
 export const queryClient = new QueryClient({
     defaultOptions: {
@@ -22,14 +25,16 @@ ReactDOM.render(
     <React.StrictMode>
         <QueryClientProvider client={queryClient}>
             <Router>
-                <switch>
-                    <Route path={"/"} exact>
-                        <ExampleContainer/>
-                    </Route>
-                    <Route path={"/posts/:id"} exact>
-                        <PostContainer/>
-                    </Route>
-                </switch>
+               <Layout>
+                   <Switch>
+                       <Route path={"/"} exact>
+                           <ExampleContainer/>
+                       </Route>
+                       <Route path={"/posts/:id"} exact>
+                           <PostContainer/>
+                       </Route>
+                   </Switch>
+               </Layout>
             </Router>
         </QueryClientProvider>
     </React.StrictMode>,
