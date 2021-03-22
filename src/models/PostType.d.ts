@@ -1,5 +1,5 @@
 export type PostType = {
     body: string;
-    id: number;
+    id: string;
     title: string;
 };

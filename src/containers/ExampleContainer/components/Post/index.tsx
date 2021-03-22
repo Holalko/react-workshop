@@ -2,7 +2,7 @@ import React from "react";
 
 interface PostProps {
     body: string;
-    id: number;
+    id: string;
     title: string;
 }
 export const Post = ({id,title,body}: PostProps) => {
