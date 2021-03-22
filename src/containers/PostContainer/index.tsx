@@ -5,10 +5,12 @@ import Container from "../../components/Container";
 import PostForm from "./components/PostForm";
 import {PostType} from "../../models/PostType";
 import {usePost} from "../../hooks/queries/usePost";
+import {useCreatePostMutation} from "../../hooks/mutations/useUpdatePostMutation";
 
 
 const PostContainer: FC = ({}) => {
     const {id} = useParams<{ id: string }>();
+    const {mutate: updatePost} = useCreatePostMutation();
 
 
     // TODO: TASK #1
@@ -24,7 +26,7 @@ const PostContainer: FC = ({}) => {
     // TODO: TASK #3
     //  implement post update with react-query useMutation hook
     const handleSubmit = (post: PostType) => {
-        console.log(post);
+        updatePost(post);
     }
 
     // TODO: TASK #4
